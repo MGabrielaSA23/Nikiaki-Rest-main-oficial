@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Nikiaki-Rest-main.iml" filepath="$PROJECT_DIR$/.idea/Nikiaki-Rest-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Nikiaki-Rest-main/niki/nikiaki.iml" filepath="$PROJECT_DIR$/Nikiaki-Rest-main/niki/nikiaki.iml" />
+    </modules>
+  </component>
+</project>
