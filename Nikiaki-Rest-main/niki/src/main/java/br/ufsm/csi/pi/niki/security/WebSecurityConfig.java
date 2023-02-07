@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,6 +22,7 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -50,6 +52,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new AuthenticationFilter();
     }
 
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+
+        return authProvider;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and()
@@ -61,6 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/usuario").permitAll()
                 .antMatchers(HttpMethod.POST, "/cadastrar-usuario").permitAll()
                 .antMatchers(HttpMethod.GET, "/lista-receita").permitAll()
+                .antMatchers(HttpMethod.GET, "/listagem-receitas").permitAll()
                 .antMatchers(HttpMethod.GET, "/lista-usuario").hasAuthority("admin")
                 .antMatchers(HttpMethod.POST, "/registrar-receita").hasAuthority("admin")
                 .antMatchers(HttpMethod.POST, "/editar-receita").hasAuthority("admin")
@@ -68,9 +81,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/editar-receita/{id}").hasAuthority("admin")
         ;
 
+        http.authenticationProvider(authenticationProvider());
+
         http.addFilterBefore(this.authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
+
 
     @Bean
     public CorsFilter corsFilter() {
@@ -86,5 +102,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new CorsFilter(source);
     }
-
 }
+
+

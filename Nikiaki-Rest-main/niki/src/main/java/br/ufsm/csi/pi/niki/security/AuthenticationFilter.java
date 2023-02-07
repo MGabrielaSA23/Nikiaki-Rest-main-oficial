@@ -1,6 +1,7 @@
 package br.ufsm.csi.pi.niki.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,7 +22,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     private UserDetailsService userDetailsService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request,
+                                    @NotNull HttpServletResponse response,
+                                    @NotNull FilterChain filterChain)
             throws ServletException, IOException {
 
         String url = request.getRequestURI();
@@ -34,6 +37,8 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                 System.out.println("Token: " + token);
 
                 String username = new JWTUtil().getUsernameToken(token);
+                System.out.println("Passou do get token: " + token);
+
                 System.out.println("Username: " + username);
                 System.out.println("Expired Token? " + new JWTUtil().isTokenExpired(token));
 

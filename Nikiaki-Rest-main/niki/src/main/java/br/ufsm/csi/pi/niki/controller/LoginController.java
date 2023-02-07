@@ -46,7 +46,12 @@ public class LoginController {
 
                 usuario.setToken(token);
                 usuario.setSenha("");
+                usuario.setNome(loggedUser.getNome());
+                usuario.setSenha(loggedUser.getSenha());
                 usuario.setAdmin(loggedUser.isAdmin());
+                usuario.setEmail(loggedUser.getEmail());
+                usuario.setCpf(loggedUser.getCpf());
+                usuario.setCelular(loggedUser.getCelular());
                 System.out.println("Is_Admin:" + loggedUser.isAdmin());
                 System.out.println("Token: " + token);
 
@@ -56,7 +61,6 @@ public class LoginController {
             e.printStackTrace();
             return new ResponseEntity<>("Usuário ou senha incorretos", HttpStatus.BAD_REQUEST);
         }
-
         return new ResponseEntity<>("Usuário ou senha incorretos", HttpStatus.BAD_REQUEST);
     }
 }

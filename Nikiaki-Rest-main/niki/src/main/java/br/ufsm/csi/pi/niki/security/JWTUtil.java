@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class JWTUtil {
     public static final long LiFE_TIME = Duration.ofSeconds(36000).toMillis();
 
@@ -42,9 +43,9 @@ public class JWTUtil {
     }
 
     private Claims parseToken(String token) {
-        return Jwts.parser()
+                 return Jwts.parser()
                 .setSigningKey("nikiaki")
                 .parseClaimsJws(token.replace("Bearer", ""))
                 .getBody();
-    }
+}
 }

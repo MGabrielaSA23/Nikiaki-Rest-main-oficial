@@ -29,8 +29,10 @@ public class MyUserDetailsService implements UserDetailsService {
         else {
             String authtority = "";
             if (usuario.isAdmin) {
+                System.out.println("ADMIN LOGADO");
                 authtority = "admin";
-            } else if (!usuario.isAdmin) {
+            } else {
+                System.out.println("USUARIO LOGADO");
                 authtority = "user";
             }
             System.out.println(authtority);

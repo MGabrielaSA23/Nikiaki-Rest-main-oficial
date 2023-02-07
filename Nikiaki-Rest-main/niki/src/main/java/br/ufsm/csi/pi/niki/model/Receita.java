@@ -44,15 +44,6 @@ public class Receita{
     @Column (name = "tempodepreparo")
     private String tempodepreparo;
 
-    public Receita(String nome, String categoria, String ingredientes, String mododepreparo, String porcoes, String tempodepreparo) {
-        this.nome = nome;
-        this.categoria = categoria;
-        this.ingredientes = ingredientes;
-        this.mododepreparo = mododepreparo;
-        this.porcoes = porcoes;
-        this.tempodepreparo = tempodepreparo;
-    }
-
     public Receita(){}
     public int getId() {
         return id;
@@ -107,6 +98,15 @@ public class Receita{
     }
 
     public void setTempodepreparo(String tempodepreparo) {
+        this.tempodepreparo = tempodepreparo;
+    }
+
+    public Receita(String nome, String categoria, String ingredientes, String mododepreparo, String porcoes, String tempodepreparo) {
+        this.nome = nome;
+        this.categoria = categoria;
+        this.ingredientes = ingredientes;
+        this.mododepreparo = mododepreparo;
+        this.porcoes = porcoes;
         this.tempodepreparo = tempodepreparo;
     }
 
