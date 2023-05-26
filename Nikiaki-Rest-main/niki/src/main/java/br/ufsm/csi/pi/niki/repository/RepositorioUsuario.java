@@ -14,10 +14,5 @@ public interface RepositorioUsuario extends JpaRepository<Usuario, Integer> {
     @Query(value = "SELECT *  FROM  usuario WHERE username = ?1", nativeQuery = true)
     Usuario findByUsername(String username);
 
-
-    Boolean existsByUsername(String username);
-
-    Boolean existsByEmail(String email);
-
 }
 

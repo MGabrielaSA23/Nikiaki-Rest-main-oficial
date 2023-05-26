@@ -115,7 +115,7 @@ public class Receita{
     }
 
     public Receita(String nome, String categoria, String ingredientes,
-                   String mododepreparo, String porcoes, String tempodepreparo, String Observacao) {
+                   String mododepreparo, String porcoes, String tempodepreparo, String observacao) {
         this.nome = nome;
         this.categoria = categoria;
         this.ingredientes = ingredientes;
