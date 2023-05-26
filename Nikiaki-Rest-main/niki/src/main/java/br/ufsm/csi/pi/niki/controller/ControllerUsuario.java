@@ -57,8 +57,6 @@ public class ControllerUsuario {
         Usuario _Usuario = repositorioUsuario.save(new Usuario(
                 usuario.getUsername(),
                 usuario.getNome(),
-                usuario.getCpf(),
-                usuario.getCelular(),
                 usuario.getEmail(),
                 passwordEncoder.encode(usuario.getSenha()),
                 usuario.isAdmin())
@@ -75,10 +73,7 @@ public class ControllerUsuario {
             Usuario _Usuario = userData.get();
             _Usuario.setUsername(usuario.getUsername());
             _Usuario.setNome(usuario.getNome());
-            _Usuario.setCpf(usuario.getCpf());
-            _Usuario.setCelular(usuario.getCelular());
             _Usuario.setEmail(usuario.getEmail());
-            _Usuario.setNome(usuario.getNome());
             String encodedPassword = passwordEncoder.encode(usuario.getSenha());
             _Usuario.setSenha(encodedPassword);
             return new ResponseEntity<>(repositorioUsuario.save(_Usuario), HttpStatus.OK);

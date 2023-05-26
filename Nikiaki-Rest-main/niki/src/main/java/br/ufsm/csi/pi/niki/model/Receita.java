@@ -44,6 +44,19 @@ public class Receita{
     @Column (name = "tempodepreparo")
     private String tempodepreparo;
 
+    @Column (name = "observacao")
+    private String observacao;
+
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+
     public Receita(){}
     public int getId() {
         return id;
@@ -101,13 +114,15 @@ public class Receita{
         this.tempodepreparo = tempodepreparo;
     }
 
-    public Receita(String nome, String categoria, String ingredientes, String mododepreparo, String porcoes, String tempodepreparo) {
+    public Receita(String nome, String categoria, String ingredientes,
+                   String mododepreparo, String porcoes, String tempodepreparo, String Observacao) {
         this.nome = nome;
         this.categoria = categoria;
         this.ingredientes = ingredientes;
         this.mododepreparo = mododepreparo;
         this.porcoes = porcoes;
         this.tempodepreparo = tempodepreparo;
+        this.observacao = observacao;
     }
 
 }

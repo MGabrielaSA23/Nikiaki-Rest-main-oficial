@@ -9,9 +9,6 @@
         <module name="nikiaki" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="nikiaki" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

@@ -14,11 +14,6 @@ private String username;
 
 @Column(name = "email")
 private String email;
-@Column(name = "cpf")
-private String cpf;
-
-@Column(name = "celular")
-private String celular;
 @Column(name = "nome")
 private String nome;
 
@@ -59,22 +54,6 @@ public boolean isAdmin;
                 this.email = email;
         }
 
-        public String getCpf() {
-                return cpf;
-        }
-
-        public void setCpf(String cpf) {
-                this.cpf = cpf;
-        }
-
-        public String getCelular() {
-                return celular;
-        }
-
-        public void setCelular(String celular) {
-                this.celular = celular;
-        }
-
         public String getNome() {
                 return nome;
         }
@@ -107,11 +86,9 @@ public boolean isAdmin;
                 isAdmin = admin;
         }
 
-        public Usuario(String username, String email, String cpf, String celular, String nome, String senha, boolean isAdmin) {
+        public Usuario(String username, String email, String nome, String senha, boolean isAdmin) {
                 this.username = username;
                 this.email = email;
-                this.cpf = cpf;
-                this.celular = celular;
                 this.nome = nome;
                 this.senha = senha;
                 this.isAdmin = isAdmin;

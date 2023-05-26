@@ -24,7 +24,7 @@ public class MyUserDetailsService implements UserDetailsService {
         System.out.println(usuario);
 
         if (usuario == null) {
-            throw new UsernameNotFoundException("Username or Password Not Found");
+            throw new UsernameNotFoundException("Username não encontrado");
         }
         else {
             String authtority = "";

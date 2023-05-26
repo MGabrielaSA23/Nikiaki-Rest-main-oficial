@@ -50,8 +50,6 @@ public class LoginController {
                 usuario.setSenha(loggedUser.getSenha());
                 usuario.setAdmin(loggedUser.isAdmin());
                 usuario.setEmail(loggedUser.getEmail());
-                usuario.setCpf(loggedUser.getCpf());
-                usuario.setCelular(loggedUser.getCelular());
                 System.out.println("Is_Admin:" + loggedUser.isAdmin());
                 System.out.println("Token: " + token);
 

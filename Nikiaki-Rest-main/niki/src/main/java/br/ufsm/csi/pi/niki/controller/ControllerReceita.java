@@ -50,7 +50,8 @@ public class ControllerReceita {
                 receita.getIngredientes(),
                 receita.getMododepreparo(),
                 receita.getPorcoes(),
-                receita.getTempodepreparo())
+                receita.getTempodepreparo(),
+                receita.getObservacao())
         );
         return new ResponseEntity<>(_receita, HttpStatus.CREATED);
     }
@@ -68,6 +69,7 @@ public class ControllerReceita {
             _receita.setMododepreparo(receita.getMododepreparo());
             _receita.setPorcoes(receita.getPorcoes());
             _receita.setTempodepreparo(receita.getTempodepreparo());
+            _receita.setObservacao(receita.getObservacao());
 
             return new ResponseEntity<>(repositorioReceita.save(_receita), HttpStatus.OK);
         } else {
