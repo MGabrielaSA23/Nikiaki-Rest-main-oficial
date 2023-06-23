@@ -86,10 +86,10 @@ public boolean isAdmin;
                 isAdmin = admin;
         }
 
-        public Usuario(String username, String email, String nome, String senha, boolean isAdmin) {
+        public Usuario(String username,  String nome, String email,String senha, boolean isAdmin) {
                 this.username = username;
-                this.email = email;
                 this.nome = nome;
+                this.email = email;
                 this.senha = senha;
                 this.isAdmin = isAdmin;
         }

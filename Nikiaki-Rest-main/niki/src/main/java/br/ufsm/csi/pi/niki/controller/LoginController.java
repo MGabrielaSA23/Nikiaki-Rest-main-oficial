@@ -45,7 +45,6 @@ public class LoginController {
                 loggedUser = this.repositorioUsuario.findByUsername(usuario.getUsername());
 
                 usuario.setToken(token);
-                usuario.setSenha("");
                 usuario.setNome(loggedUser.getNome());
                 usuario.setSenha(loggedUser.getSenha());
                 usuario.setAdmin(loggedUser.isAdmin());

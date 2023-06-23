@@ -54,12 +54,14 @@ public class ControllerUsuario {
 
     @PostMapping("api/usuario")
     public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) {
-        Usuario _Usuario = repositorioUsuario.save(new Usuario(
+        Usuario _Usuario = repositorioUsuario.save(
+                new Usuario(
                 usuario.getUsername(),
                 usuario.getNome(),
                 usuario.getEmail(),
                 passwordEncoder.encode(usuario.getSenha()),
-                usuario.isAdmin())
+                usuario.isAdmin()
+              )
         );
         return new ResponseEntity<>(_Usuario, HttpStatus.CREATED);
     }
@@ -84,7 +86,6 @@ public class ControllerUsuario {
 
     @DeleteMapping("api/usuario/{id}")
     public ResponseEntity<Usuario> deleteUserById(@PathVariable("id") int id) {
-
         try {
             repositorioUsuario.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
