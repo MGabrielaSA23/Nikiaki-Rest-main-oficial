@@ -8,4 +8,6 @@ public interface RepositorioReceita extends JpaRepository<Receita, Integer> {
 
     @Query(value = "SELECT *  FROM  receita WHERE id = ?1", nativeQuery = true)
     Receita findByReceitaId(String id);
+    Receita findByNome(String nome);
+
 }

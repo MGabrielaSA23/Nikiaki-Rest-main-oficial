@@ -73,18 +73,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/usuario").permitAll()
                 .antMatchers(HttpMethod.POST, "/cadastrar-usuario").permitAll()
                 .antMatchers(HttpMethod.GET, "/lista-receita").permitAll()
-                .antMatchers(HttpMethod.GET, "/usuario/perfil").permitAll()
-                .antMatchers(HttpMethod.GET, "/listagem-receitas").permitAll()
+                .antMatchers(HttpMethod.GET, "/perfil").permitAll()
+                .antMatchers(HttpMethod.POST, "/registrar-categoria").permitAll()
+                .antMatchers(HttpMethod.GET, "/lista-categoria").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/lista-usuario").permitAll()
-                .antMatchers(HttpMethod.POST, "/lista-usuario").permitAll()
-                .antMatchers(HttpMethod.PUT, "/lista-usuario/{id}").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/lista-usuario/{id}").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/registrar-receita").hasAuthority("admin")
-                .antMatchers(HttpMethod.POST, "/editar-receita").hasAuthority("admin")
-                .antMatchers(HttpMethod.PUT, "/editar-receita/{id}").hasAuthority("admin")
-                .antMatchers(HttpMethod.DELETE, "/editar-receita/{id}").hasAuthority("admin")
+                .antMatchers(HttpMethod.GET, "/perfil").permitAll()
+                .antMatchers(HttpMethod.POST, "/editar-perfil").permitAll()
+                .antMatchers(HttpMethod.PUT, "/editar-perfil/{id}").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/editar-perfil/{id}").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/registrar-receita").permitAll()
+                .antMatchers(HttpMethod.POST, "/editar-receita").permitAll()
+                .antMatchers(HttpMethod.PUT, "/editar-receita/{id}").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/editar-receita/{id}").permitAll()
+
+
+                .antMatchers(HttpMethod.POST, "/editar-categoria").permitAll()
+                .antMatchers(HttpMethod.PUT, "/editar-categoria/{id}").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/editar-categoria/{id}").permitAll()
+
         ;
 
         http.authenticationProvider(authenticationProvider());
