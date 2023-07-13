@@ -6,13 +6,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 
 @Repository
 @Transactional
 public interface RepositorioUsuario extends JpaRepository<Usuario, Integer> {
 
-    @Query(value = "SELECT *  FROM  usuario WHERE username = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM usuario WHERE username = ?1", nativeQuery = true)
     Usuario findByUsername(String username);
-
+    @Query(value = "SELECT * FROM usuario WHERE username = ?1", nativeQuery = true)
+    Optional<Usuario> findByUsernameo(String username);
 }
 

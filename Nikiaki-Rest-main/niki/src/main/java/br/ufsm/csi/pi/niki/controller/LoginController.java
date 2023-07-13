@@ -45,11 +45,13 @@ public class LoginController {
                 loggedUser = this.repositorioUsuario.findByUsername(usuario.getUsername());
 
                 usuario.setToken(token);
+                usuario.setId(loggedUser.getId());
                 usuario.setNome(loggedUser.getNome());
                 usuario.setSenha(loggedUser.getSenha());
                 usuario.setAdmin(loggedUser.isAdmin());
                 usuario.setEmail(loggedUser.getEmail());
                 System.out.println("Is_Admin:" + loggedUser.isAdmin());
+                System.out.println("ID DO USUÁRIO" + loggedUser.getId());
                 System.out.println("Token: " + token);
 
                 return new ResponseEntity<>(usuario, HttpStatus.OK);

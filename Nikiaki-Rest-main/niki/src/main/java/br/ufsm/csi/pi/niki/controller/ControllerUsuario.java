@@ -1,5 +1,6 @@
 package br.ufsm.csi.pi.niki.controller;
 
+import br.ufsm.csi.pi.niki.model.Receita;
 import br.ufsm.csi.pi.niki.model.Usuario;
 import br.ufsm.csi.pi.niki.repository.RepositorioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,14 +43,11 @@ public class ControllerUsuario {
     }
 
     @GetMapping("api/usuario/{id}")
-    public ResponseEntity<Usuario> getUserById(@PathVariable("id") int id) {
-        Optional<Usuario> userData = repositorioUsuario.findById(id);
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") int id) {
+        Optional<Usuario> usuarioData = repositorioUsuario.findById(id);
 
-        if (userData.isPresent()) {
-            return new ResponseEntity<>(userData.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return usuarioData.map(usuario -> new ResponseEntity<>(usuario, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("api/usuario")
