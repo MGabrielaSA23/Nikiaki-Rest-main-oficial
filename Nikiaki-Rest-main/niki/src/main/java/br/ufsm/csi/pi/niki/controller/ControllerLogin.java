@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class LoginController {
+public class ControllerLogin {
 
     @Autowired
     private AuthenticationManager authenticationManager;
     final
     RepositorioUsuario repositorioUsuario;
 
-    public LoginController(RepositorioUsuario repositorioUsuario) {
+    public ControllerLogin(RepositorioUsuario repositorioUsuario) {
         this.repositorioUsuario = repositorioUsuario;
     }
 

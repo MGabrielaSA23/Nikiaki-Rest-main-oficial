@@ -72,10 +72,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/usuario").permitAll()
                 .antMatchers(HttpMethod.POST, "/cadastrar-usuario").permitAll()
-                .antMatchers(HttpMethod.GET, "/lista-receita").permitAll()
+                .antMatchers(HttpMethod.GET, "/lista-receita-usuario").permitAll()
                 .antMatchers(HttpMethod.GET, "/perfil").permitAll()
-                .antMatchers(HttpMethod.POST, "/registrar-categoria").permitAll()
-                .antMatchers(HttpMethod.GET, "/lista-categoria").permitAll()
 
 
                 .antMatchers(HttpMethod.GET, "/perfil").permitAll()
@@ -83,15 +81,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/editar-perfil/{id}").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/editar-perfil/{id}").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/registrar-receita").permitAll()
-                .antMatchers(HttpMethod.POST, "/editar-receita").permitAll()
-                .antMatchers(HttpMethod.PUT, "/editar-receita/{id}").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/editar-receita/{id}").permitAll()
+                .antMatchers(HttpMethod.POST, "/registrar-receita").hasAuthority("admin")
+                .antMatchers(HttpMethod.POST, "/editar-receita").hasAuthority("admin")
+                .antMatchers(HttpMethod.PUT, "/editar-receita/{id}").hasAuthority("admin")
+                .antMatchers(HttpMethod.DELETE, "/editar-receita/{id}").hasAuthority("admin")
 
 
-                .antMatchers(HttpMethod.POST, "/editar-categoria").permitAll()
-                .antMatchers(HttpMethod.PUT, "/editar-categoria/{id}").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/editar-categoria/{id}").permitAll()
+                .antMatchers(HttpMethod.POST, "/editar-categoria").hasAuthority("admin")
+                .antMatchers(HttpMethod.PUT, "/editar-categoria/{id}").hasAuthority("admin")
+                .antMatchers(HttpMethod.DELETE, "/editar-categoria/{id}").hasAuthority("admin")
+
+                .antMatchers(HttpMethod.POST, "/registrar-categoria").hasAuthority("admin")
+                .antMatchers(HttpMethod.GET, "/lista-categoria").hasAuthority("admin")
 
         ;
 

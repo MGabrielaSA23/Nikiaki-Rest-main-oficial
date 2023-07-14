@@ -1,6 +1,8 @@
 package br.ufsm.csi.pi.niki.controller;
 
+import br.ufsm.csi.pi.niki.model.Favorito;
 import br.ufsm.csi.pi.niki.model.Receita;
+import br.ufsm.csi.pi.niki.repository.RepositorioFavorito;
 import br.ufsm.csi.pi.niki.repository.RepositorioReceita;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,14 @@ public class ControllerReceita {
     final
     RepositorioReceita repositorioReceita;
 
-    public ControllerReceita(RepositorioReceita repositorioReceita) {
+
+
+    final
+    RepositorioFavorito repositorioFavorito;
+    public ControllerReceita(RepositorioReceita repositorioReceita,
+                             RepositorioFavorito repositorioFavorito) {
         this.repositorioReceita = repositorioReceita;
+        this.repositorioFavorito = repositorioFavorito;
     }
 
     @GetMapping("api/receita")
@@ -51,16 +59,15 @@ public class ControllerReceita {
                 receita.getMododepreparo(),
                 receita.getPorcoes(),
                 receita.getTempodepreparo(),
-                receita.getObservacao())
+                receita.getObservacao(),
+                receita.getLiked())
         );
         return new ResponseEntity<>(_receita, HttpStatus.CREATED);
     }
-
     @PutMapping("api/receita/{id}")
     public ResponseEntity<Receita> updateReceita(@PathVariable("id") int id,
                                                     @RequestBody Receita receita) {
         Optional<Receita> receitaData = repositorioReceita.findById(id);
-
         if (receitaData.isPresent()) {
             Receita _receita = receitaData.get();
             _receita.setNome(receita.getNome());
@@ -70,16 +77,34 @@ public class ControllerReceita {
             _receita.setPorcoes(receita.getPorcoes());
             _receita.setTempodepreparo(receita.getTempodepreparo());
             _receita.setObservacao(receita.getObservacao());
-
+            _receita.setLiked(receita.getLiked());
             return new ResponseEntity<>(repositorioReceita.save(_receita), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @PostMapping("api/receita/{id}/{usuarioid}/like")
+    public ResponseEntity<Void> likeReceita(@PathVariable("id") int id,
+                                            @PathVariable("usuarioid") int usuarioid) {
+        repositorioFavorito.insertFavorito(id, usuarioid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
+    @DeleteMapping("api/receita/{id}/{usuarioid}/dislike")
+    public ResponseEntity<Void> dislikeReceita(@PathVariable("id") int id,
+                                               @PathVariable("usuarioid") int usuarioid) {
+        repositorioFavorito.dislikeReceita(id, usuarioid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("api/receita/{id}/{usuarioid}/isliked")
+    public ResponseEntity<Boolean> isReceitaLiked(@PathVariable("id") int id,
+                                                  @PathVariable("usuarioid") int usuarioid) {
+        boolean isLiked = repositorioFavorito.checkIfReceitaLiked(id, usuarioid);
+        return new ResponseEntity<>(isLiked, HttpStatus.OK);
+    }
     @DeleteMapping("api/receita/{id}")
     public ResponseEntity<Receita> deleteReceita(@PathVariable("id") int id) {
-
         try {
             repositorioReceita.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -87,6 +112,4 @@ public class ControllerReceita {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
 }

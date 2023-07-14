@@ -49,7 +49,6 @@ public class ControllerUsuario {
         return usuarioData.map(usuario -> new ResponseEntity<>(usuario, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
     @PostMapping("api/usuario")
     public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) {
         Usuario _Usuario = repositorioUsuario.save(

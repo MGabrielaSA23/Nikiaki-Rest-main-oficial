@@ -48,6 +48,10 @@ public class Receita{
     private String observacao;
 
 
+    @Column(name = "isLiked")
+    private Boolean isLiked;
+
+
     public String getObservacao() {
         return observacao;
     }
@@ -114,8 +118,17 @@ public class Receita{
         this.tempodepreparo = tempodepreparo;
     }
 
+    public Boolean getLiked() {
+        return isLiked;
+    }
+
+    public void setLiked(Boolean liked) {
+        isLiked = liked;
+    }
+
     public Receita(String nome, String categoria, String ingredientes,
-                   String mododepreparo, String porcoes, String tempodepreparo, String observacao) {
+                   String mododepreparo, String porcoes, String tempodepreparo, String observacao,
+                   Boolean isLiked) {
         this.nome = nome;
         this.categoria = categoria;
         this.ingredientes = ingredientes;
@@ -123,6 +136,7 @@ public class Receita{
         this.porcoes = porcoes;
         this.tempodepreparo = tempodepreparo;
         this.observacao = observacao;
+        this.isLiked = isLiked;
     }
 
 }
